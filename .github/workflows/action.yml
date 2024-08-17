@@ -1,0 +1,22 @@
+name: Python CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v5.1.1
+      with:
+        python-version: '3.9'  # Specify the Python version
+
+    - name: Make start.sh executable
+      run: chmod +x start.sh
+
+    - name: Run start.sh
+      run: ./start.sh
