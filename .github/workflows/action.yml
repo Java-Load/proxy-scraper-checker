@@ -1,6 +1,9 @@
 name: Python CI
 
-on: [push, pull_request]
+on:
+  schedule:
+    - cron: "*/30 * * * *"  # Запуск каждые 30 минут
+  workflow_dispatch:  # Возможность запуска вручную
 
 jobs:
   build:
@@ -13,7 +16,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v5.1.1
       with:
-        python-version: '3.9'  # Specify the Python version
+        python-version: '3.9'  # Укажите нужную версию Python
 
     - name: Make start.sh executable
       run: chmod +x start.sh
